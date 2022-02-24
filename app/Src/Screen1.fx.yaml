@@ -1,2 +1,8 @@
 Screen1 As screen:
 
+    TextInput1 As text:
+        Default: ="Works"
+        X: =560
+        Y: =424
+        ZIndex: =1
+
