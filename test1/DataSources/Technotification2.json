@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "80673cc6-0f3b-40f3-9f43-ce85d2555952",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "Technotification2",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

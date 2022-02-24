@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "e6c7411f-0ce9-4d2d-aa06-a2a9eb2420ec",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "IssueAddB",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

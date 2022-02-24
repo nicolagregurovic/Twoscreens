@@ -1,0 +1,1895 @@
+Grind_Coil As screen:
+    Fill: =RGBA(29, 29, 29, 1)
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinner: =LoadingSpinner.Data
+    LoadingSpinnerColor: =RGBA(250, 10, 10, .8)
+    OnHidden: |-
+        =UpdateContext({LoadingVar:false})
+    OnVisible: |-
+        =UpdateContext({Yes_Button:false});UpdateContext({No_Button:false});
+        UpdateContext({Opbutt:false});
+        UpdateContext({Op_yes:false});
+        UpdateContext({Group_Changeover:false});
+        UpdateContext({Group_Tech:false});
+        UpdateContext({Scanner_Scan:false});
+        UpdateContext({Esc_Flag:""});
+        UpdateContext({DetButt:true});
+        UpdateContext({Packs_ThankYou:false});
+        UpdateContext({Confirmationcloseout:false});
+        Set(Timer1Start,false);UpdateContext({Timer1Start:false});
+        Set(Workorder,Blank());
+        UpdateContext({Timer4Start:false});
+        UpdateContext({Packs_Error:false})
+    Orientation: =If(Grind_Coil.Width < Grind_Coil.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= Grind_Coil.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    bgReport_2 As rectangle:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        DisabledFill: =bgReport_2.Fill
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(100, 118, 132, 1)
+        FocusedBorderColor: =bgReport_2.BorderColor
+        Height: =184
+        HoverFill: =bgReport_2.Fill
+        PressedFill: =bgReport_2.Fill
+        Width: =768
+        ZIndex: =1
+
+    bdAddInstance_1 As rectangle:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        DisabledFill: =bdAddInstance_1.Fill
+        Fill: =RGBA(197, 203, 207, 1)
+        FocusedBorderColor: =bdAddInstance_1.BorderColor
+        Height: =110
+        HoverFill: =bdAddInstance_1.Fill
+        PressedFill: =bdAddInstance_1.Fill
+        Width: =768
+        Y: =74
+        ZIndex: =2
+
+    bgOpenInstances_1 As rectangle:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        DisabledFill: =bgOpenInstances_1.Fill
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(0, 0, 0, 1)
+        FocusedBorderColor: =bgOpenInstances_1.BorderColor
+        Height: =840
+        HoverFill: =bgOpenInstances_1.Fill
+        PressedFill: =bgOpenInstances_1.Fill
+        Width: =768
+        Y: =184
+        ZIndex: =3
+
+    list_Downtime_1 As gallery.galleryVertical:
+        BorderColor: =RGBA(102, 182, 227, 1)
+        DisabledBorderColor: =list_Downtime_1.BorderColor
+        DisabledFill: =list_Downtime_1.Fill
+        Height: =667
+        HoverBorderColor: =list_Downtime_1.BorderColor
+        HoverFill: =list_Downtime_1.Fill
+        Items: |-
+            =SortByColumns(
+               Filter(
+               'Downtime Tracker', Department = DepartmentVal, DowntimeT = "",Machine<> "Material Shortage"),
+                "Created",
+                Descending
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinnerColor: =list_Downtime_1.BorderColor
+        PressedBorderColor: =list_Downtime_1.BorderColor
+        PressedFill: =list_Downtime_1.Fill
+        Selectable: =false
+        TemplateSize: =110
+        Width: =768
+        Y: =357
+        ZIndex: =7
+
+        backgroud_List_1 As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            DisabledFill: =backgroud_List_1.Fill
+            DisplayMode: =DisplayMode.View
+            Fill: =If(ThisItem.'Assigned Tech' <> Blank(), RGBA(255, 255, 180, .8),RGBA(250, 155, 112, .8))
+            FocusedBorderColor: =backgroud_List_1.BorderColor
+            Height: =110
+            HoverFill: =backgroud_List_1.Fill
+            OnSelect: =Select(Parent)
+            PressedFill: =backgroud_List_1.Fill
+            Width: =758
+            ZIndex: =1
+
+        label_Area_1 As label:
+            AutoHeight: =true
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.View
+            FocusedBorderColor: =label_Area_1.BorderColor
+            FontWeight: =FontWeight.Bold
+            Height: =51
+            HoverBorderColor: =label_Area_1.BorderColor
+            HoverColor: =label_Area_1.Color
+            HoverFill: =label_Area_1.Fill
+            OnSelect: =Select(Parent)
+            PaddingBottom: =10
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =10
+            PressedBorderColor: =label_Area_1.BorderColor
+            PressedColor: =label_Area_1.Color
+            PressedFill: =label_Area_1.Fill
+            Size: =18
+            Text: =ThisItem.Area
+            Width: =250
+            ZIndex: =2
+
+        label_Line_Machine_1 As label:
+            Align: =Align.Right
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.View
+            FocusedBorderColor: =label_Line_Machine_1.BorderColor
+            FontWeight: =FontWeight.Semibold
+            Height: =51
+            HoverBorderColor: =label_Line_Machine_1.BorderColor
+            HoverColor: =label_Line_Machine_1.Color
+            HoverFill: =label_Line_Machine_1.Fill
+            OnSelect: =Select(Parent)
+            PaddingBottom: =10
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =10
+            PressedBorderColor: =label_Line_Machine_1.BorderColor
+            PressedColor: =label_Line_Machine_1.Color
+            PressedFill: =label_Line_Machine_1.Fill
+            Size: =18
+            Text: =ThisItem.Line & " - " & ThisItem.Machine
+            Width: =508
+            X: =250
+            ZIndex: =3
+
+        label_Tech_1 As label:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.View
+            FocusedBorderColor: =label_Tech_1.BorderColor
+            FontWeight: =FontWeight.Semibold
+            HoverBorderColor: =label_Tech_1.BorderColor
+            HoverColor: =label_Tech_1.Color
+            HoverFill: =label_Tech_1.Fill
+            OnSelect: =Select(Parent)
+            PaddingLeft: =20
+            PressedBorderColor: =label_Tech_1.BorderColor
+            PressedColor: =label_Tech_1.Color
+            PressedFill: =label_Tech_1.Fill
+            Size: =15
+            Text: |-
+                =If(ThisItem.'Assigned Tech' <> Blank(), "Assigned Tech: " & ThisItem.'Assigned Tech',"Waiting for Tech")
+            Visible: =false
+            Width: =379
+            Y: =64
+            ZIndex: =4
+
+        label_ReportTime_1 As label:
+            Align: =Align.Right
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.View
+            FocusedBorderColor: =label_ReportTime_1.BorderColor
+            HoverBorderColor: =label_ReportTime_1.BorderColor
+            HoverColor: =label_ReportTime_1.Color
+            HoverFill: =label_ReportTime_1.Fill
+            OnSelect: =Select(Parent)
+            PaddingRight: =20
+            PressedBorderColor: =label_ReportTime_1.BorderColor
+            PressedColor: =label_ReportTime_1.Color
+            PressedFill: =label_ReportTime_1.Fill
+            Size: =15
+            Text: |-
+                ="Report Time: " & Text(ThisItem.'Report Time',"[$-en-US]dd/mm/yy hh:mm")
+            Width: =379
+            X: =379
+            Y: =64
+            ZIndex: =5
+
+        Button1_1 As button:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =75
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |
+                =//If (ThisItem.OpFlag = Blank(),AssignOpFlow.Run(ThisItem.ID,Now(),Now()),Refresh('Downtime Tracker'));
+                //AssignOpFlow.Run(ThisItem.ID,Now(),Now())
+                UpdateContext({CurrentID:ThisItem.ID});
+                Set(CurType,ThisItem.'Machine Type');
+                UpdateContext({opRea:true})
+            PaddingBottom: =1
+            PaddingLeft: =1
+            PaddingRight: =1
+            PaddingTop: =1
+            Size: =15
+            Text: ="Operator Close Out"
+            Visible: =If (ThisItem.OpFlag <> "X",false,true)
+            Width: =115
+            X: =290
+            Y: =17
+            ZIndex: =6
+
+    label_List_1 As label:
+        AutoHeight: =true
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderColor: =label_List_1.BorderColor
+        FontWeight: =FontWeight.Bold
+        HoverBorderColor: =label_List_1.BorderColor
+        HoverColor: =label_List_1.Color
+        HoverFill: =label_List_1.Fill
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        PressedBorderColor: =label_List_1.BorderColor
+        PressedColor: =label_List_1.Color
+        PressedFill: =label_List_1.Fill
+        Size: =16
+        Text: ="Open Instances"
+        Width: =293
+        X: =265
+        Y: =308
+        ZIndex: =8
+
+    label_Report_2 As label:
+        Align: =Align.Justify
+        AutoHeight: =true
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderColor: =label_Report_2.BorderColor
+        FontWeight: =FontWeight.Bold
+        HoverBorderColor: =label_Report_2.BorderColor
+        HoverColor: =label_Report_2.Color
+        HoverFill: =label_Report_2.Fill
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        PressedBorderColor: =label_Report_2.BorderColor
+        PressedColor: =label_Report_2.Color
+        PressedFill: =label_Report_2.Fill
+        Size: =20
+        Text: ="Report Downtime"
+        Width: =334
+        Y: =18
+        ZIndex: =9
+
+    timerReload_1 As timer:
+        AutoPause: =false
+        AutoStart: =true
+        BorderColor: =ColorFade(timerReload_1.Fill, -15%)
+        DisabledBorderColor: =ColorFade(timerReload_1.BorderColor, 70%)
+        DisabledColor: =ColorFade(timerReload_1.Fill, 90%)
+        DisabledFill: =ColorFade(timerReload_1.Fill, 70%)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(100, 118, 132, 1)
+        FocusedBorderColor: =timerReload_1.BorderColor
+        HoverBorderColor: =ColorFade(timerReload_1.BorderColor, 20%)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+        OnTimerEnd: =Refresh('Downtime Tracker');
+        PressedBorderColor: =timerReload_1.Fill
+        PressedColor: =timerReload_1.Fill
+        PressedFill: =timerReload_1.Color
+        Repeat: =true
+        Text: |-
+            =Text(Time(0, 0, timerReload_1.Value/1000), "hh:mm:ss")
+        Visible: =false
+        X: =594
+        Y: =17
+        ZIndex: =10
+
+    loadingScreen_1 As rectangle:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        DisabledFill: =loadingScreen_1.Fill
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(255, 255, 255, .8)
+        FocusedBorderColor: =loadingScreen_1.BorderColor
+        Height: =840
+        HoverFill: =loadingScreen_1.Fill
+        PressedFill: =loadingScreen_1.Fill
+        Visible: =LoadingVar
+        Width: =768
+        Y: =184
+        ZIndex: =11
+
+    dd_Area_1 As dropdown:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        ChevronBackground: =RGBA(100, 118, 132, 1)
+        ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+        ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+        ChevronHoverBackground: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(0, 0, 0, 1)
+        FocusedBorderColor: =dd_Area_1.BorderColor
+        HoverBorderColor: =ColorFade(dd_Area_1.BorderColor, 15%)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =RGBA(62, 74, 83, 1)
+        Items: =SortByColumns(Distinct(Filter('Downtime - Machines', Department = DepartmentVal, OldDT),Area),"Result")
+        PressedBorderColor: =dd_Area_1.HoverBorderColor
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =RGBA(197, 203, 207, 1)
+        SelectionFill: =RGBA(100, 118, 132, 1)
+        Size: =13
+        Width: =195
+        X: =48
+        Y: =112
+        ZIndex: =12
+
+    dd_Line_1 As dropdown:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        ChevronBackground: =RGBA(100, 118, 132, 1)
+        ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+        ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+        ChevronHoverBackground: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(0, 0, 0, 1)
+        FocusedBorderColor: =dd_Line_1.BorderColor
+        HoverBorderColor: =ColorFade(dd_Line_1.BorderColor, 15%)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =RGBA(62, 74, 83, 1)
+        Items: =SortByColumns(Distinct(Filter('Downtime - Machines', Area = dd_Area_1.Selected.Result And Department = DepartmentVal, OldDT),Line),"Result")
+        PressedBorderColor: =dd_Line_1.HoverBorderColor
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =RGBA(197, 203, 207, 1)
+        Reset: =true
+        SelectionFill: =RGBA(100, 118, 132, 1)
+        Size: =13
+        Width: =211
+        X: =265
+        Y: =112
+        ZIndex: =13
+
+    dd_Machine_1 As dropdown:
+        AllowEmptySelection: =true
+        BorderColor: =RGBA(197, 203, 207, 1)
+        ChevronBackground: =RGBA(100, 118, 132, 1)
+        ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+        ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+        ChevronHoverBackground: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        Default: ="0"
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(0, 0, 0, 1)
+        FocusedBorderColor: =dd_Machine_1.BorderColor
+        HoverBorderColor: =ColorFade(dd_Machine_1.BorderColor, 15%)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =RGBA(62, 74, 83, 1)
+        Items: =SortByColumns(Filter('Downtime - Machines', Line = dd_Line_1.Selected.Result And Area = dd_Area_1.Selected.Result And Department = DepartmentVal),"Machine")
+        OnChange: |-
+            =If(
+                dd_Machine_1.Selected.Machine<>Blank() And dd_Machine_1.Selected.Machine<>"Material Shortage",
+                    UpdateContext({Group_Changeover: true });
+                     UpdateContext({Scanner_Scan: false });
+                      UpdateContext({eBoardMachine: dd_Machine_1.Selected});
+                       UpdateContext({eBoardStatus: LookUp(eBoardsLineStatus,ID = eBoardMachine.Line_ID)}); ,
+                        If(dd_Machine_1.Selected.Machine="Material Shortage",
+                            UpdateContext({Scanner_Scan: true })))
+        OnSelect: |+
+            =If(
+                dd_Machine_1.Selected.Machine<>Blank() And dd_Machine_1.Selected.Machine<>"Material Shortage",
+                    UpdateContext({Group_Changeover: true });
+                     UpdateContext({Scanner_Scan: false });
+                      UpdateContext({eBoardMachine: dd_Machine_1.Selected});
+                       UpdateContext({eBoardStatus: LookUp(eBoardsLineStatus,ID = eBoardMachine.Line_ID)}); ,
+                        If(dd_Machine_1.Selected.Machine="Material Shortage",
+                            UpdateContext({Scanner_Scan: true })))
+            
+        PressedBorderColor: =dd_Machine_1.HoverBorderColor
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =RGBA(197, 203, 207, 1)
+        Reset: =true
+        SelectionFill: =RGBA(100, 118, 132, 1)
+        Size: =13
+        Width: =210
+        X: =498
+        Y: =112
+        ZIndex: =14
+
+    lbArea_1 As label:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderColor: =lbArea_1.BorderColor
+        HoverBorderColor: =lbArea_1.BorderColor
+        HoverColor: =lbArea_1.Color
+        HoverFill: =lbArea_1.Fill
+        PressedBorderColor: =lbArea_1.BorderColor
+        PressedColor: =lbArea_1.Color
+        PressedFill: =lbArea_1.Fill
+        Size: =15
+        Text: ="Area"
+        Width: =160
+        X: =48
+        Y: =74
+        ZIndex: =15
+
+    lbLine_1 As label:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderColor: =lbLine_1.BorderColor
+        HoverBorderColor: =lbLine_1.BorderColor
+        HoverColor: =lbLine_1.Color
+        HoverFill: =lbLine_1.Fill
+        PressedBorderColor: =lbLine_1.BorderColor
+        PressedColor: =lbLine_1.Color
+        PressedFill: =lbLine_1.Fill
+        Size: =15
+        Text: ="Line"
+        Width: =160
+        X: =278
+        Y: =74
+        ZIndex: =16
+
+    lbMachine_1 As label:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderColor: =lbMachine_1.BorderColor
+        HoverBorderColor: =lbMachine_1.BorderColor
+        HoverColor: =lbMachine_1.Color
+        HoverFill: =lbMachine_1.Fill
+        PressedBorderColor: =lbMachine_1.BorderColor
+        PressedColor: =lbMachine_1.Color
+        PressedFill: =lbMachine_1.Fill
+        Size: =15
+        Text: ="Machine / Material"
+        Width: =210
+        X: =498
+        Y: =74
+        ZIndex: =17
+
+    timerAdd_1 As timer:
+        AutoPause: =false
+        BorderColor: =ColorFade(timerAdd_1.Fill, -15%)
+        DisabledBorderColor: =ColorFade(timerAdd_1.BorderColor, 70%)
+        DisabledColor: =ColorFade(timerAdd_1.Fill, 90%)
+        DisabledFill: =ColorFade(timerAdd_1.Fill, 70%)
+        Duration: =500
+        Fill: =RGBA(100, 118, 132, 1)
+        FocusedBorderColor: =timerAdd_1.BorderColor
+        HoverBorderColor: =ColorFade(timerAdd_1.BorderColor, 20%)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+        OnTimerEnd: |
+            =Refresh('Downtime Tracker');
+            Set(LoadingVar,false);
+            Set(timerAddStart,false);
+        PressedBorderColor: =timerAdd_1.Fill
+        PressedColor: =timerAdd_1.Fill
+        PressedFill: =timerAdd_1.Color
+        Repeat: =true
+        Start: =timerAddStart
+        Text: |-
+            =Text(Time(0, 0, timerAdd_1.Value/1000), "hh:mm:ss")
+        Visible: =false
+        X: =300
+        Y: =17
+        ZIndex: =18
+
+    Timer2_1 As timer:
+        AutoPause: =false
+        Duration: =3000
+        Fill: =RGBA(100, 118, 132, 1)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+        OnTimerEnd: =Button1_1.Visible=false
+        Start: =timerAddStart
+        Visible: =false
+        X: =420
+        Y: =17
+        ZIndex: =19
+
+    Icon2_1 As icon.BackArrow:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(197, 203, 207, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Height: =51
+        HoverColor: =ColorFade(Self.Color, 65%)
+        Icon: =Icon.BackArrow
+        OnSelect: |-
+            =UpdateContext({Scanner_Scan:false});
+            Navigate('Department Selection',ScreenTransition.CoverRight)
+        Tooltip: ="Back"
+        Width: =50
+        X: =684
+        Y: =24
+        ZIndex: =20
+
+    OpClsPopUp_1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =28
+
+        Rectangle1_1 As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            Height: =184
+            Visible: =opRea
+            Width: =768
+            ZIndex: =21
+
+        Label1_1 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =122
+            Size: =28
+            Text: ="Operator Close Out"
+            Visible: =opRea
+            Width: =675
+            X: =48
+            Y: =24
+            ZIndex: =22
+
+        Rectangle2_1 As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =840
+            Visible: =opRea
+            Width: =768
+            Y: =184
+            ZIndex: =23
+
+        Dropdown1_1 As dropdown:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            ChevronBackground: =RGBA(100, 118, 132, 1)
+            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+            ChevronHoverBackground: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            ChevronHoverFill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =66
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(62, 74, 83, 1)
+            Items: =SortByColumns(Filter('Downtime - Reasons', 'Machine Type' = CurType),"SrtNum",Ascending)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(197, 203, 207, 1)
+            SelectionFill: =RGBA(100, 118, 132, 1)
+            Size: =18
+            Visible: =opRea
+            Width: =388
+            X: =190
+            Y: =391
+            ZIndex: =28
+
+        Label2_1 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =64
+            Size: =22
+            Text: ="Please Select Downtime Reason"
+            Visible: =opRea
+            Width: =472
+            X: =158
+            Y: =258
+            ZIndex: =29
+
+        Button2_2 As button:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: =If(Dropdown1_1.Selected.Reason = "Other" Or IsBlank(Dropdown1_1.Selected.Reason), DisplayMode.Disabled, Edit)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =108
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |
+                =//OpCls.Run(CurrentID,"Operator",Now(),Now(),Dropdown1_1.Selected.Reason,"Operator Close Out");
+                Patch('Downtime Tracker',First(Filter('Downtime Tracker', ID = CurrentID)),{tveh:"Operator",Downtimereason:Dropdown1_1.Selected.Reason,Solution:"Operator Close Out",Response_x0020_Time:Now(),OData__x0074_045:Now()});
+                Temp_Transfer.Run(CurrentID);
+                UpdateContext({Confirmationcloseout:true});
+                UpdateContext({Timer3Start:true});
+                UpdateContext({opRea:false});
+                Reset(Dropdown1_1);
+                Refresh('Downtime Tracker');
+                LoadingSpinner.Data
+            Size: =22
+            Text: ="Confirm"
+            Visible: =opRea
+            Width: =273
+            X: =243
+            Y: =606
+            ZIndex: =30
+
+        Button2_3 As button:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =108
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |-
+                =UpdateContext({opRea:false});
+                Reset(Dropdown1_1);
+            Size: =22
+            Text: ="Cancel"
+            Visible: =opRea
+            Width: =273
+            X: =247
+            Y: =806
+            ZIndex: =31
+
+    Group1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =35
+
+        Op_Confirmation As rectangle:
+            BorderColor: =RGBA(224, 228, 230, 1)
+            BorderThickness: =5
+            Fill: =RGBA(100, 118, 132, 1)
+            Height: =175
+            Visible: =Opbutt
+            Width: =382
+            X: =176
+            Y: =184
+            ZIndex: =32
+
+        Timer1 As timer:
+            Duration: =3000
+            Fill: =RGBA(100, 118, 132, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnTimerEnd: |-
+                =UpdateContext({Opbutt:false});
+                UpdateContext({Timer1Start:false});
+                Navigate('Department Selection',ScreenTransition.CoverRight)
+            OnTimerStart: =
+            Start: =Timer1Start
+            Visible: =false
+            X: =208
+            Y: =492
+            ZIndex: =33
+
+        Icon1 As icon.Check:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(152, 208, 70, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Icon: =Icon.Check
+            Visible: =Opbutt
+            X: =334
+            Y: =283
+            ZIndex: =34
+
+        Label3 As label:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =36
+            Size: =13
+            Text: ="Ticket Now Created"
+            Visible: =Opbutt
+            Width: =180
+            X: =280
+            Y: =244
+            ZIndex: =40
+
+        Label3_1 As label:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =36
+            Size: =16
+            Text: ="Thank You."
+            Visible: =Opbutt
+            Width: =180
+            X: =300
+            Y: =209
+            ZIndex: =41
+
+    Group1_1 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =40
+
+        Op_Confirmation_1 As rectangle:
+            BorderColor: =RGBA(224, 228, 230, 1)
+            BorderThickness: =5
+            Fill: =RGBA(100, 118, 132, 1)
+            Height: =175
+            Visible: =Op_yes
+            Width: =382
+            X: =176
+            Y: =186
+            ZIndex: =35
+
+        Timer1_1 As timer:
+            Duration: =3000
+            Fill: =RGBA(100, 118, 132, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnTimerEnd: |-
+                =UpdateContext({Opbutt:false});
+                UpdateContext({Timer1Start:false});
+                Navigate('Department Selection',ScreenTransition.CoverRight)
+            OnTimerStart: =
+            Start: =Timer1Start
+            Visible: =false
+            X: =208
+            Y: =494
+            ZIndex: =36
+
+        Icon1_1 As icon.Check:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(152, 208, 70, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Icon: =Icon.Check
+            Visible: =Op_yes
+            X: =334
+            Y: =261
+            ZIndex: =37
+
+        Label3_3 As label:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =36
+            Size: =13
+            Text: ="Your Ticket is Now Created"
+            Visible: =Op_yes
+            Width: =236
+            X: =252
+            Y: =315
+            ZIndex: =38
+
+        Label3_2 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =124
+            Size: =16
+            Text: ="Please close out ticket before returing to production"
+            Visible: =Op_yes
+            Width: =312
+            X: =213
+            Y: =167
+            ZIndex: =39
+
+    Changeover As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =40
+
+        No_Button As button:
+            BorderThickness: =5
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |
+                =If(
+                    CountRows(
+                        Filter(
+                            'Downtime Tracker',
+                            Downtimereason = "Open",
+                            Area = dd_Area_1.Selected.Result,
+                            Line = dd_Line_1.Selected.Result,
+                            ikel = dd_Machine_1.Selected.Machine
+                        )
+                    ) = 0,
+                    UpdateContext({Esc_Flag: "X"});
+                    UpdateContext({Group_Tech: true}),
+                    Navigate(
+                        Screen1,
+                        Fade
+                    )
+                );
+            RadiusBottomLeft: =90
+            RadiusBottomRight: =90
+            RadiusTopLeft: =90
+            RadiusTopRight: =90
+            Size: =15
+            Text: ="No"
+            Tooltip: ="Select No"
+            Visible: =Group_Changeover
+            Width: =80
+            X: =450
+            Y: =235
+            ZIndex: =4
+
+        Yes_Button As button:
+            BorderThickness: =5
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |-
+                =If(CountRows(Filter('Downtime Tracker',dd_Line_1.Selected.Result = Line, dd_Machine_1.Selected.Machine = ikel, Downtimereason = "Open"))=0,UpdateContext({Group_Tech:true}),Navigate(Screen1,Fade))
+                
+                //(UpdateContext({Group_Tech:true}),(UpdateContext({Warning:true})))
+            RadiusBottomLeft: =90
+            RadiusBottomRight: =90
+            RadiusTopLeft: =90
+            RadiusTopRight: =90
+            Size: =15
+            Text: ="Yes"
+            Tooltip: ="Select Yes"
+            Visible: =Group_Changeover
+            Width: =80
+            X: =220
+            Y: =235
+            ZIndex: =5
+
+        Changeover_Text As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.View
+            FocusedBorderColor: =Changeover_Text.BorderColor
+            FontWeight: =FontWeight.Bold
+            Height: =56
+            HoverBorderColor: =Changeover_Text.BorderColor
+            HoverColor: =Changeover_Text.Color
+            HoverFill: =Changeover_Text.Fill
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            PressedBorderColor: =Changeover_Text.BorderColor
+            PressedColor: =Changeover_Text.Color
+            PressedFill: =Changeover_Text.Fill
+            Size: =17
+            Text: ="Changeover / Setup"
+            Visible: =Group_Changeover
+            Width: =471
+            X: =130
+            Y: =174
+            ZIndex: =6
+
+    Timer3 As timer:
+        Duration: =3000
+        Fill: =RGBA(100, 118, 132, 1)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+        OnTimerEnd: |-
+            =UpdateContext({Confirmationcloseout:false});
+            UpdateContext({Timer3Start:false});
+            Navigate('Department Selection',CoverRight)
+        OnTimerStart: =
+        Start: =Timer3Start
+        Visible: =false
+        Y: =984
+        ZIndex: =42
+
+    Group_Tech As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =43
+
+        Tech_Backing As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Fill: =RGBA(62, 74, 83, 1)
+            Height: =139
+            Visible: =Group_Tech
+            Width: =382
+            X: =176
+            Y: =186
+            ZIndex: =24
+
+        Tech_Required_2 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.View
+            FocusedBorderColor: =Tech_Required_2.BorderColor
+            FontWeight: =FontWeight.Semibold
+            Height: =56
+            HoverBorderColor: =Tech_Required_2.BorderColor
+            HoverColor: =Tech_Required_2.Color
+            HoverFill: =Tech_Required_2.Fill
+            PaddingBottom: =20
+            PaddingLeft: =20
+            PaddingRight: =20
+            PaddingTop: =20
+            PressedBorderColor: =Tech_Required_2.BorderColor
+            PressedColor: =Tech_Required_2.Color
+            PressedFill: =Tech_Required_2.Fill
+            Size: =17
+            Text: ="Technician Required"
+            Visible: =Group_Tech
+            Width: =460
+            X: =134
+            Y: =176
+            ZIndex: =25
+
+        Tech_Button_Yes As button:
+            BorderThickness: =5
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |
+                =Set(LoadingVar,true);
+                
+                
+                
+                If(Or(
+                    eBoardStatus.ID = 46,eBoardStatus.ID = 44),
+                        
+                //Flow name is CG_Tech
+                   Patch(
+                    'Downtime Tracker',
+                    Defaults('Downtime Tracker'),
+                    {
+                        Department:DepartmentVal,
+                        Area: dd_Area_1.Selected.Result,
+                        Line: dd_Line_1.Selected.Result,
+                        ikel: dd_Machine_1.Selected.Machine,
+                        MachineType:dd_Machine_1.Selected.'Machine Type',
+                        MachineID: eBoardMachine.ID,
+                        LineID: eBoardStatus.ID,
+                        Report_x0020_Time: Now(),
+                        Standard_Time: eBoardMachine.Escalation_Min,
+                        PartNumber: eBoardStatus.PartNumber,
+                        TechCalled: true,
+                        Merit_Date: If(Hour(Now()) >= 0 Or Hour(Now()) <= 4, Text(Today(),"dd/mm/yyyy"), Text(Today()+1,"dd/mm/yyyy")),
+                        bottleNeck:eBoardMachine.bottleNeck,
+                        DTShift: eBoardStatus.CurrentShift,
+                        downPartID:eBoardStatus.partNumStatus
+                    }
+                 
+                ),CG_Tech.Run(dd_Area_1.Selected.Result,dd_Line_1.Selected.Result,dd_Machine_1.Selected.Machine,Now(),DepartmentVal,dd_Machine_1.Selected.'Machine Type',Esc_Flag));
+                
+                
+                
+                Set(timerAddStart,true);
+                UpdateContext({Timer1Start:true});
+                UpdateContext({Opbutt:true});
+            RadiusBottomLeft: =90
+            RadiusBottomRight: =90
+            RadiusTopLeft: =90
+            RadiusTopRight: =90
+            Size: =15
+            Text: ="Yes"
+            Tooltip: ="Select Yes"
+            Visible: =Group_Tech
+            Width: =78
+            X: =200
+            Y: =230
+            ZIndex: =26
+
+        Tech_Button_No As button:
+            BorderThickness: =5
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |+
+                =Set(LoadingVar,true);
+                
+                //Esc_Diagnostic2.Run(DepartmentVal,dd_Area_1.Selected.Result,dd_Line_1.Selected.Result,dd_Machine_1.Selected.Machine,Now(),dd_Machine_1.Selected.'Machine Type',Esc_Flag);
+                //Flow name is CG_NoTech
+                
+                If(
+                    eBoardStatus.ID <> 46,
+                      CG_NoTech.Run(DepartmentVal,dd_Area_1.Selected.Result,dd_Line_1.Selected.Result,dd_Machine_1.Selected.Machine,Now(),dd_Machine_1.Selected.'Machine Type',Esc_Flag);,
+                //Flow name is CG_NoTech
+                   Patch(
+                    'Downtime Tracker',
+                    Defaults('Downtime Tracker'),
+                    {
+                        Department:DepartmentVal,
+                        Area: dd_Area_1.Selected.Result,
+                        Line: dd_Line_1.Selected.Result,
+                        ikel: dd_Machine_1.Selected.Machine,
+                        MachineType:dd_Machine_1.Selected.'Machine Type',
+                        MachineID: eBoardMachine.ID,
+                        LineID: eBoardStatus.ID,
+                        Report_x0020_Time: Now(),
+                        OpFlag:"X",
+                        PartNumber: eBoardStatus.PartNumber,
+                        Merit_Date: If(Hour(Now()) >= 0 Or Hour(Now()) <= 4, Text(Today(),"dd/mm/yyyy"), Text(Today()+1,"dd/mm/yyyy")),
+                        bottleNeck:eBoardMachine.bottleNeck,
+                        DTShift: eBoardStatus.CurrentShift,
+                        PlannedDT:If(Esc_Flag = "X", false, true),
+                        OpFlagNew:true,
+                        tveh:"Operator"
+                    }
+                 
+                ));
+                
+                Set(timerAddStart,true);
+                UpdateContext({Timer1Start:true});
+                UpdateContext({Opbutt:true});
+                
+                
+                
+                
+                
+                
+                
+                
+            RadiusBottomLeft: =90
+            RadiusBottomRight: =90
+            RadiusTopLeft: =90
+            RadiusTopRight: =90
+            Size: =15
+            Text: ="No"
+            Tooltip: ="Select No"
+            Visible: =Group_Tech
+            Width: =78
+            X: =456
+            Y: =230
+            ZIndex: =27
+
+    Label5 As label:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Height: =75
+        Size: =13
+        Text: ="Your Order has been placed."
+        Visible: =false
+        Width: =267
+        X: =269
+        Y: =251
+        ZIndex: =46
+
+    "'Close Out Ticket' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =46
+
+        Close_Ticketback As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(100, 118, 132, 1)
+            Height: =850
+            Visible: =Confirmationcloseout
+            Width: =768
+            Y: =174
+            ZIndex: =43
+
+        Correct_Ticket As icon.Check:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(152, 208, 70, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Height: =114
+            Icon: =Icon.Check
+            Visible: =Confirmationcloseout
+            Width: =91
+            X: =338
+            Y: =551
+            ZIndex: =44
+
+        Close_Ticket As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =298
+            Size: =18
+            Text: |-
+                ="Thank you.
+                
+                Ticket is now Closed."
+            Visible: =Confirmationcloseout
+            Width: =181
+            X: =295
+            Y: =327
+            ZIndex: =45
+
+    Packs_Thankyou As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =66
+
+        Packs_Background As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            DisabledFill: =Packs_Background.Fill
+            Fill: =RGBA(197, 203, 207, 1)
+            FocusedBorderColor: =Packs_Background.BorderColor
+            Height: =838
+            HoverFill: =Packs_Background.Fill
+            PressedFill: =Packs_Background.Fill
+            Visible: =Packs_ThankYou
+            Width: =768
+            Y: =186
+            ZIndex: =70
+
+        Label6 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =92
+            Size: =20
+            Text: ="Your order has been placed "
+            Visible: =Packs_ThankYou
+            Width: =768
+            Y: =259
+            ZIndex: =71
+
+        Label7 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =122
+            Size: =22
+            Text: |-
+                ="Please Confirm with the Warehouse
+                 by activating the Beacon."
+            Visible: =Packs_ThankYou
+            Width: =768
+            Y: =333
+            ZIndex: =72
+
+        Label8 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =53
+            Size: =20
+            Text: ="Thank You "
+            Visible: =Packs_ThankYou
+            Width: =768
+            Y: =575
+            ZIndex: =73
+
+        Circle2 As circle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Fill: =RGBA(100, 118, 132, 0.86)
+            Height: =103
+            Visible: =Packs_ThankYou
+            X: =335
+            Y: =457
+            ZIndex: =74
+
+        Icon4 As icon.Check:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(54, 176, 75, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Height: =66
+            Icon: =Icon.Check
+            Visible: =Packs_ThankYou
+            X: =351
+            Y: =474
+            ZIndex: =75
+
+    bgOpenInstances_3 As rectangle:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        DisabledFill: =bgOpenInstances_3.Fill
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(0, 0, 0, 1)
+        FocusedBorderColor: =bgOpenInstances_3.BorderColor
+        Height: =22
+        HoverFill: =bgOpenInstances_3.Fill
+        PressedFill: =bgOpenInstances_3.Fill
+        Visible: =false
+        Width: =768
+        Y: =1002
+        ZIndex: =83
+
+    Scanner_Scan As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =83
+
+        Scanner_Background As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            DisabledFill: =Scanner_Background.Fill
+            Fill: =RGBA(197, 203, 207, 1)
+            FocusedBorderColor: =Scanner_Background.BorderColor
+            Height: =850
+            HoverFill: =Scanner_Background.Fill
+            PressedFill: =Scanner_Background.Fill
+            Visible: =Scanner_Scan
+            Width: =768
+            Y: =174
+            ZIndex: =47
+
+        Label9 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            Height: =39
+            Size: =13
+            Text: |-
+                ="Picker : " & First(LotDetails).pickerselection
+            Visible: =Scanner_Scan
+            Width: =333
+            X: =434
+            Y: =674
+            ZIndex: =48
+
+        Label10 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            Height: =39
+            Size: =13
+            Text: |-
+                ="Work Order : " & First(LotDetails).WorkOrder
+            Visible: =Scanner_Scan
+            Width: =433
+            Y: =674
+            ZIndex: =49
+
+        Part_Numberscan As text:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            BorderThickness: =2
+            Clear: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Default: =""
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =4
+            Height: =51
+            HintText: =""
+            HoverBorderColor: =RGBA(197, 203, 207, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(62, 74, 83, 1)
+            MaxLength: =20
+            OnChange: =
+            Size: =13
+            Visible: =Scanner_Scan
+            Width: =334
+            X: =48
+            Y: =362
+            ZIndex: =50
+
+        Lot_Numberscan As text:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            BorderThickness: =2
+            Clear: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Default: =lotnumber
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =4
+            Height: =51
+            HintText: =""
+            HoverBorderColor: =RGBA(197, 203, 207, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(62, 74, 83, 1)
+            OnChange: |-
+                =UpdateContext({lotnumber:Lot_Numberscan.Text})
+            Reset: =true
+            Size: =13
+            Visible: =Scanner_Scan
+            Width: =334
+            X: =48
+            Y: =455
+            ZIndex: =51
+
+        Quantity_2 As text:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            Default: =""
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =4
+            Height: =50
+            HintText: ="Quantity"
+            HoverBorderColor: =RGBA(197, 203, 207, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(62, 74, 83, 1)
+            Size: =13
+            Visible: =Scanner_Scan
+            Width: =102
+            X: =423
+            Y: =573
+            ZIndex: =52
+
+        DataTable1 As dataTable.datatable:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            BorderStyle: =BorderStyle.Solid
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Normal
+            HeadingColor: =RGBA(255, 255, 255, 1)
+            HeadingFill: =RGBA(100, 118, 132, 1)
+            HeadingFont: =Font.'Open Sans'
+            HeadingFontWeight: =FontWeight.Normal
+            HeadingSize: =13
+            Height: =185
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(62, 74, 83, .2)
+            InputFill: =RGBA(0, 0, 0, 1)
+            InvertedColor: =RGBA(255, 255, 255, 1)
+            Items: =shortmaterial_1
+            LinkColor: =ColorFade(RGBA(0, 134, 208, 1), 30%)
+            PrimaryColor1: =RGBA(100, 118, 132, 1)
+            PrimaryColor2: =RGBA(197, 203, 207, 1)
+            PrimaryColor3: =RGBA(62, 74, 83, 1)
+            SelectedColor: =RGBA(255, 255, 255, 1)
+            SelectedFill: =RGBA(100, 118, 132, .2)
+            Size: =13
+            Visible: =Scanner_Scan
+            Width: =768
+            X: =0
+            Y: =714
+            ZIndex: =53
+
+            PartNum_Column2 As dataTableColumn.textualColumn:
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="PartNum"
+                FieldName: ="PartNum"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =1
+                Text: =ThisItem.PartNum
+                Width: =100
+                X: =0
+                Y: =0
+                ZIndex: =7
+
+            LotNum_Column2 As dataTableColumn.textualColumn:
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="LotNum"
+                FieldName: ="LotNum"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =2
+                Text: =ThisItem.LotNum
+                Width: =100
+                X: =0
+                Y: =0
+                ZIndex: =8
+
+            QTY_Column2 As dataTableColumn.textualColumn:
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="QTY"
+                FieldName: ="QTY"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =3
+                Text: =ThisItem.QTY
+                Width: =100
+                X: =0
+                Y: =0
+                ZIndex: =9
+
+            Reason_Column2 As dataTableColumn.textualColumn:
+                DisplayMode: =DisplayMode.Edit
+                FieldDisplayName: ="Reason"
+                FieldName: ="Reason"
+                FieldVariantName: ="textualColumn"
+                Height: =Parent.Height
+                LayoutHeight: =Parent.Height
+                Order: =4
+                Text: =ThisItem.Reason
+                Width: =100
+                X: =0
+                Y: =0
+                ZIndex: =10
+
+        Confirm_Button As button:
+            BorderThickness: =5
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: =If(Or(Not(IsBlank(DataTable1.Selected)),Not(IsEmpty(LotDetails)),Not(Connection.Connected)),DisplayMode.Edit,Disabled)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =102
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |-
+                =Set(List_Var,Concatenate("Work Order - ", Workorder,Char(10) & Char(13),"Picker - ", Selected_P ,  Char(10) & Char(13), Concat(shortmaterial_1, "Part Number - " & ThisRecord.PartNum & "  |  " & "Lot Number - " & ThisRecord.LotNum & "  |  " & "Quantity - " & ThisRecord.QTY & "  |  " & ThisRecord.Reason &  Char(10) & Char(13))));
+                
+                
+                Set(One,PDFFinal_Return.Run(JSON(shortmaterial_1,JSONFormat.IncludeBinaryData),JSON(LotDetails,JSONFormat.IncludeBinaryData),DepartmentVal,dd_Area_1.Selected.Result,dd_Line_1.Selected.Result,dd_Machine_1.Selected.Machine,Now(),dd_Machine_1.Selected.'Machine Type',List_Var));
+                
+                
+                If(Not(IsBlankOrError(One)),
+                Reset(Lot_Numberscan);
+                Clear(shortmaterial_1);
+                Clear(LotDetails);
+                UpdateContext({Workorder:""});
+                UpdateContext({PickSel:""});
+                UpdateContext({Timer4Start:true});
+                UpdateContext({lotnumber:""});
+                UpdateContext({DetButt:false});
+                //UpdateContext({Success:""});
+                
+                Reset(Picker),UpdateContext({Packs_Error:true}));
+            RadiusBottomLeft: =90
+            RadiusBottomRight: =90
+            RadiusTopLeft: =90
+            RadiusTopRight: =90
+            Size: =15
+            Text: ="Confirm"
+            Visible: =Scanner_Scan
+            Width: =105
+            X: =607
+            Y: =899
+            ZIndex: =54
+
+        Workorder_numberscan As text:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            BorderThickness: =2
+            Clear: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Default: =Workorder
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =4
+            Height: =50
+            HintText: =""
+            HoverBorderColor: =RGBA(197, 203, 207, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(62, 74, 83, 1)
+            Reset: =true
+            Size: =13
+            Visible: =Scanner_Scan
+            Width: =334
+            X: =21
+            Y: =251
+            ZIndex: =55
+
+        Barcode_Lot As barcodeScanner:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnScan: |-
+                =UpdateContext({lotnumber:Left(Barcode_Lot.Value,Len(Barcode_Lot.Value)-1)})
+            Size: =15
+            Text: ="Scan Lot Number"
+            Visible: =Scanner_Scan
+            Width: =200
+            X: =402
+            Y: =460
+            ZIndex: =57
+
+        Barcode_Lot_1 As barcodeScanner:
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnScan: |
+                =UpdateContext({Workorder:Left(Barcode_Lot_1.Value,Len(Barcode_Lot_1.Value)-1)})
+            Size: =15
+            Text: ="Scan Work Order"
+            Visible: =Scanner_Scan
+            Width: =201
+            X: =87
+            Y: =195
+            ZIndex: =58
+
+        bgReport_4 As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            DisabledFill: =bgReport_4.Fill
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(100, 118, 132, 1)
+            FocusedBorderColor: =bgReport_4.BorderColor
+            Height: =7
+            HoverFill: =bgReport_4.Fill
+            PressedFill: =bgReport_4.Fill
+            Visible: =Scanner_Scan
+            Width: =768
+            Y: =322
+            ZIndex: =59
+
+        AddPart_Button As button:
+            BorderThickness: =5
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: |-
+                =
+                If(Or(IsBlank(Workorder_numberscan.Text),IsBlank(Picker),IsBlank(Part_Numberscan.Text),IsBlank(lotnumber),IsBlank(Dropdown2.Selected.ShortReasons),IsBlank(Quantity_2.Text)),Disabled,Edit)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =102
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |-
+                =ClearCollect(LotDetails, {WorkOrder:Workorder,pickerselection:Picker.Selected.warehouseOps});
+                Set(partnumber,Part_Numberscan.Text);
+                Collect(shortmaterial_1, {PartNum:partnumber,LotNum:lotnumber,QTY:Quantity_2.Text,Reason:Dropdown2.Selected.ShortReasons});
+                Set(partnumber,Blank());
+                UpdateContext({lotnumber:""});
+                Reset(Quantity_2);
+                Reset(Dropdown2);
+                Reset(Part_Numberscan);
+                Reset(Lot_Numberscan)
+                //Left(Barcode_Lot_1.Value,Len(Barcode_Lot_1.Text)-1)
+            RadiusBottomLeft: =90
+            RadiusBottomRight: =90
+            RadiusTopLeft: =90
+            RadiusTopRight: =90
+            Size: =15
+            Text: ="Add Part"
+            Visible: =Scanner_Scan
+            Width: =105
+            X: =652
+            Y: =530
+            ZIndex: =60
+
+        Timer4 As timer:
+            Duration: =4000
+            Fill: =RGBA(100, 118, 132, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnTimerEnd: |-
+                =Navigate('Department Selection',ScreenTransition.CoverRight);
+                UpdateContext({Packs_ThankYou:false});
+                UpdateContext({Timer4Start:false});
+                Set(partnumber,Blank());
+                Set(lotnumber,Blank());
+                Reset(Quantity_2)
+            OnTimerStart: |-
+                =UpdateContext({Packs_ThankYou:true})
+            Reset: =true
+            Start: =Timer4Start
+            Visible: =false
+            X: =447
+            Y: =984
+            ZIndex: =61
+
+        Dropdown2 As dropdown:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            ChevronBackground: =RGBA(100, 118, 132, 1)
+            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+            ChevronHoverBackground: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            ChevronHoverFill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Default: =""
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =50
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(62, 74, 83, 1)
+            Items: |-
+                =Table({ShortReasons:""},{ShortReasons:"Scrap"},{ShortReasons:"Short"},{ShortReasons:"Vendor Damage"})
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(197, 203, 207, 1)
+            Reset: =true
+            SelectionFill: =RGBA(100, 118, 132, 1)
+            Size: =13
+            Visible: =Scanner_Scan
+            Width: =248
+            X: =48
+            Y: =573
+            ZIndex: =62
+
+        Label11 As label:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(29, 29, 29, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =46
+            Size: =16
+            Text: ="Select Reason"
+            Visible: =Scanner_Scan
+            Width: =189
+            X: =48
+            Y: =526
+            ZIndex: =63
+
+        Label11_1 As label:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(29, 29, 29, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =39
+            Size: =13
+            Text: ="QTY"
+            Visible: =Scanner_Scan
+            Width: =105
+            X: =420
+            Y: =533
+            ZIndex: =64
+
+        Label12 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(29, 29, 29, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =35
+            Size: =18
+            Text: ="Select Picker"
+            Visible: =Scanner_Scan
+            Width: =172
+            X: =416
+            Y: =203
+            ZIndex: =65
+
+        Confirm_Button_1 As button:
+            BorderThickness: =5
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(100, 118, 132, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =102
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnSelect: |-
+                =Clear(shortmaterial_1);
+                Clear(LotDetails);
+                UpdateContext({Workorder:""});
+                UpdateContext({PickSel:""});
+                UpdateContext({lotnumber:""});
+                Reset(Part_Numberscan);
+                Reset(Dropdown2);
+                Reset(Quantity_2);
+                Reset(Lot_Numberscan);
+                Reset(Picker)
+            RadiusBottomLeft: =90
+            RadiusBottomRight: =90
+            RadiusTopLeft: =90
+            RadiusTopRight: =90
+            Size: =15
+            Text: ="Clear All"
+            Visible: =Scanner_Scan
+            Width: =105
+            X: =56
+            Y: =900
+            ZIndex: =66
+
+        Label12_1 As label:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(29, 29, 29, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =47
+            Size: =18
+            Text: ="Input Part Number"
+            Visible: =Scanner_Scan
+            Width: =260
+            X: =414
+            Y: =364
+            ZIndex: =67
+
+        Picker As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(197, 203, 207, 1)
+            ChevronBackground: =RGBA(100, 118, 132, 1)
+            ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+            ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+            ChevronHoverBackground: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            ChevronHoverFill: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Default: =""""""
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderColor: =Picker.BorderColor
+            HoverBorderColor: =ColorFade(Picker.BorderColor, 15%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(62, 74, 83, 1)
+            Items: |-
+                =Table({warehouseOps:""},{warehouseOps:"Colin Clancy"},{warehouseOps:"Joshua Lane"},{warehouseOps:"Sylvester Bandur"},{warehouseOps:"Patrick Clarke"},{warehouseOps:"Tommy Keane"},{warehouseOps:"Stefan Filcak"},{warehouseOps:"Patrick Baker"},{warehouseOps:"Tanveer Ul Haq"},{warehouseOps:"Stephen Finnerty"},{warehouseOps:"Other"})
+            OnChange: =Set(Selected_P,Picker.Selected.warehouseOps)
+            OnSelect: =
+            PressedBorderColor: =Picker.HoverBorderColor
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(197, 203, 207, 1)
+            Reset: =true
+            SelectionFill: =RGBA(100, 118, 132, 1)
+            Size: =13
+            Visible: =Scanner_Scan
+            Width: =210
+            X: =397
+            Y: =257
+            ZIndex: =68
+
+        bgReport_5 As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            DisabledFill: =bgReport_5.Fill
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(100, 118, 132, 1)
+            FocusedBorderColor: =bgReport_5.BorderColor
+            Height: =7
+            HoverFill: =bgReport_5.Fill
+            PressedFill: =bgReport_5.Fill
+            Visible: =Scanner_Scan
+            Width: =768
+            Y: =167
+            ZIndex: =69
+
+        Label13 As label:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =33
+            Size: =13
+            Text: =One.complete
+            Visible: =Scanner_Scan
+            Width: =62
+            X: =706
+            Y: =991
+            ZIndex: =82
+
+    Group2 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =88
+
+        Packs_Background_1 As rectangle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            DisabledFill: =Packs_Background_1.Fill
+            Fill: =RGBA(197, 203, 207, 1)
+            FocusedBorderColor: =Packs_Background_1.BorderColor
+            Height: =838
+            HoverFill: =Packs_Background_1.Fill
+            PressedFill: =Packs_Background_1.Fill
+            Visible: =Packs_Error
+            Width: =768
+            Y: =186
+            ZIndex: =76
+
+        Label7_1 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =122
+            Size: =22
+            Text: ="There was an issue creating this ticket, please re-submit."
+            Visible: =Packs_Error
+            Width: =768
+            Y: =333
+            ZIndex: =77
+
+        Label8_1 As label:
+            Align: =Align.Center
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Height: =53
+            Size: =20
+            Text: ="Appologies for the inconvenience.  "
+            Visible: =Packs_Error
+            Width: =768
+            Y: =575
+            ZIndex: =78
+
+        Circle2_1 As circle:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Fill: =RGBA(100, 118, 132, 0.86)
+            Height: =103
+            Visible: =Packs_Error
+            X: =335
+            Y: =457
+            ZIndex: =79
+
+        Icon4_1 As icon.Check:
+            BorderColor: =RGBA(197, 203, 207, 1)
+            Color: =RGBA(255, 255, 0, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Height: =66
+            Icon: =Icon.Warning
+            Visible: =Packs_Error
+            X: =353
+            Y: =474
+            ZIndex: =80
+
+        Timer6 As timer:
+            AutoPause: =false
+            AutoStart: =true
+            Duration: =5000
+            Fill: =RGBA(100, 118, 132, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+            OnTimerEnd: |-
+                =UpdateContext({Packs_Error:false});
+                Reset(Timer6)
+            Start: =Packs_Error
+            Visible: =Packs_Error
+            X: =40
+            Y: =40
+            ZIndex: =81
+

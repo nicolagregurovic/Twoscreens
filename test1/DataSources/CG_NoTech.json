@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "67445192-c8d9-4054-af8d-018ea0b4f3ad",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "CG_NoTech",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

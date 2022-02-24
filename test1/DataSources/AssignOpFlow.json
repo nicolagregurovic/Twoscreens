@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "74078a96-5e33-44dc-8430-b817e0b0edb6",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "AssignOpFlow",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

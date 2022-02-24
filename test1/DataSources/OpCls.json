@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "b3941c79-b1cd-477f-9dfd-120c311591dc",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "OpCls",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

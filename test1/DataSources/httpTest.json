@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "21cf2618-297f-4fd2-8736-469a99655b99",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "httpTest",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

@@ -1,0 +1,50 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://msmanaged-na.azure-apim.net/apim/logicflows" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="OpCls" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="OpCls" />
+  <grammars>
+    <jsonTypes targetNamespace="https://msmanaged-na.azure-apim.net/apim/logicflows" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <integer name="ManualTriggerInput_Updateitem_Id_def" />
+      <string name="ManualTriggerInput_Updateitem_AssignedTech_def" />
+      <dateTimeString name="ManualTriggerInput_Updateitem_TimeofResponse_def" />
+      <dateTimeString name="ManualTriggerInput_Updateitem_Timeup_def" />
+      <string name="ManualTriggerInput_Updateitem_Downtimereason_def" />
+      <string name="ManualTriggerInput_Updateitem_Solution_def" />
+      <object name="ManualTriggerInput">
+        <property name="Updateitem_Id" type="integer" />
+        <property name="Updateitem_AssignedTech" type="string" />
+        <property name="Updateitem_TimeofResponse" typeRef="ManualTriggerInput_Updateitem_TimeofResponse_def" />
+        <property name="Updateitem_Timeup" typeRef="ManualTriggerInput_Updateitem_Timeup_def" />
+        <property name="Updateitem_Downtimereason" type="string" />
+        <property name="Updateitem_Solution" type="string" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://msmanaged-na.azure-apim.net/apim/logicflows">
+    <resource path="/{connectionId}/triggers/manual/run">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="Run">
+        <doc title="Runs a logic flow trigger." />
+        <request>
+          <param style="query" name="api-version" type="xs:string" required="true" fixed="2015-02-01-preview">
+            <doc title="The api version" />
+          </param>
+          <representation mediaType="application/json">
+            <param style="plain" name="Updateitem_Id" path="/Updateitem_Id" type="xs:long" required="true" />
+            <param style="plain" name="Updateitem_AssignedTech" path="/Updateitem_AssignedTech" type="xs:string" required="true" />
+            <param style="plain" name="Updateitem_TimeofResponse" path="/Updateitem_TimeofResponse" type="service:ManualTriggerInput_Updateitem_TimeofResponse_def" required="true" />
+            <param style="plain" name="Updateitem_Timeup" path="/Updateitem_Timeup" type="service:ManualTriggerInput_Updateitem_Timeup_def" required="true" />
+            <param style="plain" name="Updateitem_Downtimereason" path="/Updateitem_Downtimereason" type="xs:string" required="true" />
+            <param style="plain" name="Updateitem_Solution" path="/Updateitem_Solution" type="xs:string" required="true" />
+          </representation>
+        </request>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="logicflows" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

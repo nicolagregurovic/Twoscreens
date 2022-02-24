@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "ab0c4ff2-faf6-48c0-80e6-13d5f1e56e04",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "Temp_Transfer",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

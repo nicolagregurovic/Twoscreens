@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "d7d6150b-7618-400e-912e-eea6fb9b6be7",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "PDFFinal_Return",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

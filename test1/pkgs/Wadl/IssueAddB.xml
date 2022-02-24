@@ -1,0 +1,50 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://msmanaged-na.azure-apim.net/apim/logicflows" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="IssueAddB" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="IssueAddB" />
+  <grammars>
+    <jsonTypes targetNamespace="https://msmanaged-na.azure-apim.net/apim/logicflows" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="ManualTriggerInput_Createitem_Area_def" />
+      <string name="ManualTriggerInput_Createitem_Line_def" />
+      <string name="ManualTriggerInput_Createitem_Machine_def" />
+      <dateTimeString name="ManualTriggerInput_Createitem_ReportTime_def" />
+      <string name="ManualTriggerInput_Createitem_Department_def" />
+      <string name="ManualTriggerInput_Createitem_MachineType_def" />
+      <object name="ManualTriggerInput">
+        <property name="Createitem_Area" type="string" />
+        <property name="Createitem_Line" type="string" />
+        <property name="Createitem_Machine" type="string" />
+        <property name="Createitem_ReportTime" typeRef="ManualTriggerInput_Createitem_ReportTime_def" />
+        <property name="Createitem_Department" type="string" />
+        <property name="Createitem_MachineType" type="string" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://msmanaged-na.azure-apim.net/apim/logicflows">
+    <resource path="/{connectionId}/triggers/manual/run">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="Run">
+        <doc title="Runs a logic flow trigger." />
+        <request>
+          <param style="query" name="api-version" type="xs:string" required="true" fixed="2015-02-01-preview">
+            <doc title="The api version" />
+          </param>
+          <representation mediaType="application/json">
+            <param style="plain" name="Createitem_Area" path="/Createitem_Area" type="xs:string" required="true" />
+            <param style="plain" name="Createitem_Line" path="/Createitem_Line" type="xs:string" required="true" />
+            <param style="plain" name="Createitem_Machine" path="/Createitem_Machine" type="xs:string" required="true" />
+            <param style="plain" name="Createitem_ReportTime" path="/Createitem_ReportTime" type="service:ManualTriggerInput_Createitem_ReportTime_def" required="true" />
+            <param style="plain" name="Createitem_Department" path="/Createitem_Department" type="xs:string" required="true" />
+            <param style="plain" name="Createitem_MachineType" path="/Createitem_MachineType" type="xs:string" required="true" />
+          </representation>
+        </request>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="logicflows" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

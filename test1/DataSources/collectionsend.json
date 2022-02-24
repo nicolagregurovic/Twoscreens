@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "3e8eae96-f665-4dee-8133-d8bada4bd590",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "collectionsend",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

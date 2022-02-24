@@ -1,0 +1,145 @@
+"'Department Selection' As screen":
+    Fill: =RGBA(29, 29, 29, 1)
+    Height: =Max(App.Height, App.DesignHeight)
+    LoadingSpinner: =LoadingSpinner.Data
+    LoadingSpinnerColor: =RGBA(250, 10, 10, .8)
+    OnVisible: =
+    Orientation: =If('Department Selection'.Width < 'Department Selection'.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= 'Department Selection'.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    bgReport_1 As rectangle:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        DisabledFill: =bgReport_1.Fill
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(100, 118, 132, 1)
+        FocusedBorderColor: =bgReport_1.BorderColor
+        Height: =184
+        HoverFill: =bgReport_1.Fill
+        PressedFill: =bgReport_1.Fill
+        Width: =768
+        ZIndex: =1
+
+    bdAddInstance_2 As rectangle:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        DisabledFill: =bdAddInstance_2.Fill
+        Fill: =RGBA(197, 203, 207, 1)
+        FocusedBorderColor: =bdAddInstance_2.BorderColor
+        Height: =110
+        HoverFill: =bdAddInstance_2.Fill
+        PressedFill: =bdAddInstance_2.Fill
+        Width: =768
+        Y: =74
+        ZIndex: =2
+
+    dd_Department As dropdown:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        ChevronBackground: =RGBA(100, 118, 132, 1)
+        ChevronDisabledBackground: =RGBA(166, 166, 166, 1)
+        ChevronDisabledFill: =RGBA(244, 244, 244, 1)
+        ChevronHoverBackground: =ColorFade(RGBA(100, 118, 132, 1), -20%)
+        ChevronHoverFill: =RGBA(255, 255, 255, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(0, 0, 0, 1)
+        FocusedBorderColor: =dd_Department.BorderColor
+        HoverBorderColor: =ColorFade(dd_Department.BorderColor, 15%)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =RGBA(62, 74, 83, 1)
+        Items: =SortByColumns(Distinct('Downtime - Machines',Department),"Result")
+        PressedBorderColor: =dd_Department.HoverBorderColor
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =RGBA(197, 203, 207, 1)
+        SelectionFill: =RGBA(100, 118, 132, 1)
+        Size: =13
+        Tooltip: ="Department"
+        Width: =200
+        X: =453
+        Y: =109
+        ZIndex: =3
+
+    label_Report_1 As label:
+        AutoHeight: =true
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderColor: =label_Report_1.BorderColor
+        FontWeight: =FontWeight.Bold
+        HoverBorderColor: =label_Report_1.BorderColor
+        HoverColor: =label_Report_1.Color
+        HoverFill: =label_Report_1.Fill
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =20
+        PaddingTop: =20
+        PressedBorderColor: =label_Report_1.BorderColor
+        PressedColor: =label_Report_1.Color
+        PressedFill: =label_Report_1.Fill
+        Size: =20
+        Text: ="Report Downtime"
+        Width: =344
+        Y: =18
+        ZIndex: =4
+
+    dptLabelSel As label:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderColor: =dptLabelSel.BorderColor
+        FontWeight: =FontWeight.Semibold
+        HoverBorderColor: =dptLabelSel.BorderColor
+        HoverColor: =dptLabelSel.Color
+        HoverFill: =dptLabelSel.Fill
+        PressedBorderColor: =dptLabelSel.BorderColor
+        PressedColor: =dptLabelSel.Color
+        PressedFill: =dptLabelSel.Fill
+        Size: =18
+        Text: |-
+            ="Please select a department:"
+        Width: =338
+        X: =115
+        Y: =109
+        ZIndex: =5
+
+    btstartApp As icon.Add:
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(29, 29, 29, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        DisabledFill: =btstartApp.Fill
+        FocusedBorderColor: =btstartApp.BorderColor
+        Height: =60
+        HoverBorderColor: =ColorFade(btstartApp.BorderColor, 20%)
+        HoverColor: =RGBA(100, 118, 132, 1)
+        HoverFill: =btstartApp.Fill
+        Icon: =Icon.NextArrow
+        OnSelect: |
+            =Set (opRea,false);
+            //If(dd_Department.Selected.Result = "Diagnostics" Or dd_Department.Selected.Result = "Grind - Coil" Or dd_Department.Selected.Result = "Test",Navigate(Diagnostics, //ScreenTransition.Fade,{DepartmentVal:dd_Department.Selected.Result}), Navigate('Downtime list', ScreenTransition.Fade,{DepartmentVal:dd_Department.Selected.Result}))
+            
+            Navigate(Grind_Coil, ScreenTransition.Fade,{DepartmentVal:dd_Department.Selected.Result});
+            //If(dd_Department.Selected.Result= "Grind - Coil" Or dd_Department.Selected.Result = "Test" Or dd_Department.Selected.Result = "Laureate", Navigate(Grind_Coil, ScreenTransition.Fade,{DepartmentVal:dd_Department.Selected.Result}))
+        PressedBorderColor: =ColorFade(btstartApp.BorderColor, -20%)
+        PressedColor: =ColorFade(btstartApp.Color, -20%)
+        PressedFill: =btstartApp.Fill
+        Tooltip: ="Start App"
+        Width: =60
+        X: =678
+        Y: =99
+        ZIndex: =6
+
+    Label4 As label:
+        Align: =Align.Right
+        BorderColor: =RGBA(197, 203, 207, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Size: =13
+        Text: ="Rev 4.3"
+        X: =573
+        Y: =43
+        ZIndex: =7
+
