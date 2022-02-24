@@ -82,7 +82,10 @@
       }
     },
     "dataSources": [
-      "eBoardsLineStatus"
+      "eBoardsLineStatus",
+      "Downtime Tracker",
+      "Downtime - Reasons",
+      "Downtime - Machines"
     ],
     "dependencies": {},
     "dependents": [
