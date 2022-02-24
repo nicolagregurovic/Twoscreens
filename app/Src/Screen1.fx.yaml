@@ -4,12 +4,13 @@ Screen1 As screen:
         Height: =133
         Text: ="This is my button"
         Width: =388
-        X: =472
+        X: =356
+        Y: =148
         ZIndex: =1
 
     TextInput1 As text:
         Default: ="Works"
-        X: =560
-        Y: =424
+        X: =848
+        Y: =134
         ZIndex: =1
 
