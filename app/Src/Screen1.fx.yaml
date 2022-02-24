@@ -7,3 +7,9 @@ Screen1 As screen:
         X: =472
         ZIndex: =1
 
+    TextInput1 As text:
+        Default: ="Works"
+        X: =560
+        Y: =424
+        ZIndex: =1
+
