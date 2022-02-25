@@ -1,0 +1,263 @@
+{
+  "436f643e-3435-4cf5-8b1c-43d89267d80e": {
+    "connectionInstanceId": "/providers/microsoft.powerapps/apis/shared_sharepointonline/connections/f52480cb2ff2482c820b3acc9a0f429f",
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1550/1.0.1550.2686/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://meritmedical.sharepoint.com/sites/DowntimeTracker-Galway": {
+        "dataSources": {
+          "A3": {
+            "tableName": "b0448423-971a-4aa7-a620-2ad8984c3dfc"
+          },
+          "Archive Database": {
+            "tableName": "35682f19-12e9-4c71-8364-bd63018b70c4"
+          },
+          "AvailabilityTracker": {
+            "tableName": "0359c2e6-0462-4d2b-bc8c-0be68a9db7db"
+          },
+          "AvailableTime": {
+            "tableName": "3aad1f5b-9393-416c-83c9-80bf5414e837"
+          },
+          "AvailableTimeDomo": {
+            "tableName": "a30e2fc3-e219-45e7-b4c3-37c33a2c5287"
+          },
+          "Batch - Tracker": {
+            "tableName": "762a8d37-58e5-440d-b19d-61b666cf2674"
+          },
+          "DatabaseTest": {
+            "tableName": "61afd084-8270-49a5-8f0d-fbc64115ae55"
+          },
+          "Deleted Items": {
+            "tableName": "7afbd88e-6d96-4c9b-8262-6b9e6e98342b"
+          },
+          "Documents": {
+            "tableName": "9061d6be-5db1-4c86-809e-e69ec9f9ebf5"
+          },
+          "Documents_1": {
+            "tableName": "9061d6be-5db1-4c86-809e-e69ec9f9ebf5"
+          },
+          "Downtime - Escalation Groups": {
+            "tableName": "33465eaf-00ed-4e86-807b-7feb8b605b89"
+          },
+          "Downtime - Escalation Groups_1": {
+            "tableName": "33465eaf-00ed-4e86-807b-7feb8b605b89"
+          },
+          "Downtime - Gal Numbers": {
+            "tableName": "490a5ac2-f1e2-420b-ab9d-932efe562372"
+          },
+          "Downtime - Gal Numbers_1": {
+            "tableName": "490a5ac2-f1e2-420b-ab9d-932efe562372"
+          },
+          "Downtime - Machines": {
+            "tableName": "5ed7757a-cda5-4efa-9972-e6d8790373cb"
+          },
+          "Downtime - Machines_1": {
+            "tableName": "5ed7757a-cda5-4efa-9972-e6d8790373cb"
+          },
+          "Downtime - Reasons": {
+            "tableName": "5456d1b1-fd4a-4898-9cdb-cbc78904a7a5"
+          },
+          "Downtime - Reasons_1": {
+            "tableName": "5456d1b1-fd4a-4898-9cdb-cbc78904a7a5"
+          },
+          "Downtime - Techs": {
+            "tableName": "38758ba7-652b-4ffc-9942-a8a63326e189"
+          },
+          "Downtime - Techs_1": {
+            "tableName": "38758ba7-652b-4ffc-9942-a8a63326e189"
+          },
+          "Downtime Backup": {
+            "tableName": "a56b9ad4-87bf-4f5d-8508-431b75f52e9e"
+          },
+          "Downtime Backup_1": {
+            "tableName": "a56b9ad4-87bf-4f5d-8508-431b75f52e9e"
+          },
+          "Downtime Database": {
+            "tableName": "c6c26217-1cd5-4e35-bf7e-64e3aae64a99"
+          },
+          "Downtime Database_1": {
+            "tableName": "c6c26217-1cd5-4e35-bf7e-64e3aae64a99"
+          },
+          "Downtime Tracker": {
+            "tableName": "1b4b18e6-cc0e-4e1e-ad1e-3a7552d2f143"
+          },
+          "Downtime Tracker_1": {
+            "tableName": "1b4b18e6-cc0e-4e1e-ad1e-3a7552d2f143"
+          },
+          "eBoard_Patterns": {
+            "tableName": "e27efc40-e264-4802-a17e-3e5cca51478f"
+          },
+          "eBoardsActionList": {
+            "tableName": "feb3583f-d25d-4c9d-af34-62707d7c6b0b"
+          },
+          "eBoardsActionListArchive": {
+            "tableName": "e1b43b0e-f7d4-480b-b83c-c4452099a3e8"
+          },
+          "eBoardsAdminList": {
+            "tableName": "1b47b549-e64c-45da-aa6e-90337ed36b46"
+          },
+          "eBoardsHrHrDataBase": {
+            "tableName": "e27c8a7c-7110-4142-b1d2-03fe39298f2b"
+          },
+          "eBoardsLineStatus": {
+            "tableName": "814e86cd-93ec-4b59-92e1-a448bc746565"
+          },
+          "eBoardsLiveHrHr": {
+            "tableName": "96dfbff6-c931-4195-b9ec-81f1d8a22e05"
+          },
+          "eBoardsLiveScrap": {
+            "tableName": "ecdd831c-5ba0-426b-80e1-4e76f80ab864"
+          },
+          "eBoardsLiveScrapArchive": {
+            "tableName": "3fb070cf-6027-4389-9b99-6fa4b60a95e8"
+          },
+          "eBoardsPartNumbers": {
+            "tableName": "7f324c6d-de3e-4658-a1b0-12b7821931a8"
+          },
+          "eBoardsPulseSignOff": {
+            "tableName": "f4e681da-5064-4238-afb7-361a2bee86d9"
+          },
+          "eBoardsPulseSignOffArchive": {
+            "tableName": "067bc939-a90c-4e55-9196-be22925c9197"
+          },
+          "eBoardsRunRatesPerHead": {
+            "tableName": "c30a6419-76d5-4380-b49f-6f79a89599a8"
+          },
+          "eBoardsScrapReasons": {
+            "tableName": "68708da8-0b0d-4dc2-9166-bfaa02222243"
+          },
+          "GuideBatch": {
+            "tableName": "00e97e2e-a5ef-4043-a3ff-18e585241881"
+          },
+          "HrXHr_Tracker": {
+            "tableName": "6ba8dc75-70b9-4462-a638-0f53707cbfcd"
+          },
+          "KronosAppDT": {
+            "tableName": "329771db-d895-4fef-8313-fdae7437b6e1"
+          },
+          "Line Rates": {
+            "tableName": "e001c885-61c7-41f9-8619-42e831fa737d"
+          },
+          "Live Schedule": {
+            "tableName": "33a26a82-8a73-41e6-8889-1efe4510204c"
+          },
+          "Live_Schedule": {
+            "tableName": "1e27b009-be64-4382-b9c6-c7f2acf9c15d"
+          },
+          "Material_Shortages": {
+            "tableName": "9fffee18-211a-4504-9749-d72d70804348"
+          },
+          "Packs - Batch": {
+            "tableName": "ccf1499f-d25f-4b18-9020-ea6ab944a709"
+          },
+          "Packs Data Archive": {
+            "tableName": "f8811473-abef-4978-b101-54ba9d3e42db"
+          },
+          "Part Number Database": {
+            "tableName": "fe7ed31b-ab98-427c-a4b2-bdeee823c216"
+          },
+          "Pre-Assembly-Times": {
+            "tableName": "3226ac23-fc06-498c-b506-64b3c9e7cc35"
+          },
+          "Scrap Reasons": {
+            "tableName": "58549e1d-e70d-4a9c-95fd-9228f1df0bf2"
+          },
+          "Shift_Hours": {
+            "tableName": "d1b4e8ba-fb41-4800-9660-2107e08fd341"
+          },
+          "Shift_Pattern": {
+            "tableName": "a1b97246-7f26-48d4-8d73-71fd8ad6a946"
+          },
+          "Temp_DataBase": {
+            "tableName": "53cb08bc-6da1-4f11-8575-6804eada0f64"
+          },
+          "Temp_HrXHr": {
+            "tableName": "dcd0bb8e-9c93-40b4-91fd-e451c3f54ad4"
+          },
+          "Unaccounted Units": {
+            "tableName": "7d3faae9-de16-4c21-b79f-68adf1f32f13"
+          },
+          "Work Orders": {
+            "tableName": "ec25ce64-fdac-4f3f-88f4-26015046412e"
+          },
+          "Zero_Headcount": {
+            "tableName": "714a814b-9ac0-45f9-9924-f145a3892eaf"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Downtime Database",
+      "Downtime Tracker",
+      "Downtime Backup",
+      "Downtime - Techs",
+      "Downtime - Reasons",
+      "Downtime - Machines",
+      "Downtime - Gal Numbers",
+      "Downtime - Escalation Groups",
+      "Documents",
+      "A3",
+      "Archive Database",
+      "AvailabilityTracker",
+      "AvailableTime",
+      "AvailableTimeDomo",
+      "Batch - Tracker",
+      "DatabaseTest",
+      "Deleted Items",
+      "Documents_1",
+      "Downtime - Escalation Groups_1",
+      "Downtime - Gal Numbers_1",
+      "Downtime - Machines_1",
+      "Downtime - Reasons_1",
+      "Downtime - Techs_1",
+      "Downtime Backup_1",
+      "Downtime Database_1",
+      "Downtime Tracker_1",
+      "eBoard_Patterns",
+      "eBoardsActionList",
+      "eBoardsActionListArchive",
+      "eBoardsAdminList",
+      "eBoardsHrHrDataBase",
+      "eBoardsLineStatus",
+      "eBoardsLiveHrHr",
+      "eBoardsLiveScrap",
+      "eBoardsLiveScrapArchive",
+      "eBoardsPartNumbers",
+      "eBoardsPulseSignOff",
+      "eBoardsPulseSignOffArchive",
+      "eBoardsRunRatesPerHead",
+      "eBoardsScrapReasons",
+      "GuideBatch",
+      "HrXHr_Tracker",
+      "KronosAppDT",
+      "Line Rates",
+      "Live Schedule",
+      "Live_Schedule",
+      "Material_Shortages",
+      "Packs - Batch",
+      "Packs Data Archive",
+      "Part Number Database",
+      "Scrap Reasons",
+      "Pre-Assembly-Times",
+      "Shift_Hours",
+      "Shift_Pattern",
+      "Temp_DataBase",
+      "Temp_HrXHr",
+      "Unaccounted Units",
+      "Work Orders",
+      "Zero_Headcount"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "436f643e-3435-4cf5-8b1c-43d89267d80e"
+  }
+}
