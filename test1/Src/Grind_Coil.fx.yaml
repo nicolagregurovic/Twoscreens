@@ -621,7 +621,7 @@ Grind_Coil As screen:
             HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
             OnSelect: |
                 =//OpCls.Run(CurrentID,"Operator",Now(),Now(),Dropdown1_1.Selected.Reason,"Operator Close Out");
-                Patch('Downtime Tracker',First(Filter('Downtime Tracker', ID = CurrentID)),{tveh:"Operator",Downtimereason:Dropdown1_1.Selected.Reason,Solution:"Operator Close Out",Response_x0020_Time:Now(),OData__x0074_045:Now()});
+                Patch('Downtime Tracker',First(Filter('Downtime Tracker', ID = CurrentID)),{'Assigned Tech':"Operator",'Downtime reason':Dropdown1_1.Selected.Reason,Solution:"Operator Close Out",'Time of Response':Now(),'Time up':Now()});
                 Temp_Transfer.Run(CurrentID);
                 UpdateContext({Confirmationcloseout:true});
                 UpdateContext({Timer3Start:true});
@@ -822,10 +822,10 @@ Grind_Coil As screen:
                     CountRows(
                         Filter(
                             'Downtime Tracker',
-                            Downtimereason = "Open",
+                            'Downtime reason' = "Open",
                             Area = dd_Area_1.Selected.Result,
                             Line = dd_Line_1.Selected.Result,
-                            ikel = dd_Machine_1.Selected.Machine
+                            Machine = dd_Machine_1.Selected.Machine
                         )
                     ) = 0,
                     UpdateContext({Esc_Flag: "X"});
@@ -859,7 +859,7 @@ Grind_Coil As screen:
             HoverColor: =RGBA(255, 255, 255, 1)
             HoverFill: =ColorFade(RGBA(100, 118, 132, 1), -20%)
             OnSelect: |-
-                =If(CountRows(Filter('Downtime Tracker',dd_Line_1.Selected.Result = Line, dd_Machine_1.Selected.Machine = ikel, Downtimereason = "Open"))=0,UpdateContext({Group_Tech:true}),Navigate(Screen1,Fade))
+                =If(CountRows(Filter('Downtime Tracker',dd_Line_1.Selected.Result = Line, dd_Machine_1.Selected.Machine = Machine, 'Downtime reason' = "Open"))=0,UpdateContext({Group_Tech:true}),Navigate(Screen1,Fade))
                 
                 //(UpdateContext({Group_Tech:true}),(UpdateContext({Warning:true})))
             RadiusBottomLeft: =90
@@ -987,11 +987,11 @@ Grind_Coil As screen:
                         Department:DepartmentVal,
                         Area: dd_Area_1.Selected.Result,
                         Line: dd_Line_1.Selected.Result,
-                        ikel: dd_Machine_1.Selected.Machine,
-                        MachineType:dd_Machine_1.Selected.'Machine Type',
+                        Machine: dd_Machine_1.Selected.Machine,
+                        'Machine Type':dd_Machine_1.Selected.MachineType,
                         MachineID: eBoardMachine.ID,
                         LineID: eBoardStatus.ID,
-                        Report_x0020_Time: Now(),
+                        'Report Time': Now(),
                         Standard_Time: eBoardMachine.Escalation_Min,
                         PartNumber: eBoardStatus.PartNumber,
                         TechCalled: true,
@@ -1001,7 +1001,7 @@ Grind_Coil As screen:
                         downPartID:eBoardStatus.partNumStatus
                     }
                  
-                ),CG_Tech.Run(dd_Area_1.Selected.Result,dd_Line_1.Selected.Result,dd_Machine_1.Selected.Machine,Now(),DepartmentVal,dd_Machine_1.Selected.'Machine Type',Esc_Flag));
+                ),CG_Tech.Run(dd_Area_1.Selected.Result,dd_Line_1.Selected.Result,dd_Machine_1.Selected.Machine,Now(),DepartmentVal,dd_Machine_1.Selected.MachineType,Esc_Flag));
                 
                 
                 
@@ -1039,7 +1039,7 @@ Grind_Coil As screen:
                 
                 If(
                     eBoardStatus.ID <> 46,
-                      CG_NoTech.Run(DepartmentVal,dd_Area_1.Selected.Result,dd_Line_1.Selected.Result,dd_Machine_1.Selected.Machine,Now(),dd_Machine_1.Selected.'Machine Type',Esc_Flag);,
+                      CG_NoTech.Run(DepartmentVal,dd_Area_1.Selected.Result,dd_Line_1.Selected.Result,dd_Machine_1.Selected.Machine,Now(),dd_Machine_1.Selected.MachineType,Esc_Flag);,
                 //Flow name is CG_NoTech
                    Patch(
                     'Downtime Tracker',
@@ -1048,11 +1048,11 @@ Grind_Coil As screen:
                         Department:DepartmentVal,
                         Area: dd_Area_1.Selected.Result,
                         Line: dd_Line_1.Selected.Result,
-                        ikel: dd_Machine_1.Selected.Machine,
-                        MachineType:dd_Machine_1.Selected.'Machine Type',
+                        Machine: dd_Machine_1.Selected.Machine,
+                        'Machine Type':dd_Machine_1.Selected.MachineType,
                         MachineID: eBoardMachine.ID,
                         LineID: eBoardStatus.ID,
-                        Report_x0020_Time: Now(),
+                        'Report Time': Now(),
                         OpFlag:"X",
                         PartNumber: eBoardStatus.PartNumber,
                         Merit_Date: If(Hour(Now()) >= 0 Or Hour(Now()) <= 4, Text(Today(),"dd/mm/yyyy"), Text(Today()+1,"dd/mm/yyyy")),
@@ -1060,7 +1060,7 @@ Grind_Coil As screen:
                         DTShift: eBoardStatus.CurrentShift,
                         PlannedDT:If(Esc_Flag = "X", false, true),
                         OpFlagNew:true,
-                        tveh:"Operator"
+                        'Assigned Tech':"Operator"
                     }
                  
                 ));

@@ -54,7 +54,7 @@
         Items: |-
             =SortByColumns(
                Filter(
-               'Downtime Tracker', Department = DepartmentVal, Downtime = ""),
+               'Downtime Tracker', Department = DepartmentVal, DowntimeT = ""),
                 "Created",
                 Descending
             )
@@ -72,7 +72,7 @@
             BorderColor: =RGBA(197, 203, 207, 1)
             DisabledFill: =backgroud_List.Fill
             DisplayMode: =DisplayMode.View
-            Fill: =If(ThisItem.tveh <> Blank(), RGBA(255, 255, 180, .8),RGBA(250, 155, 112, .8))
+            Fill: =If(ThisItem.'Assigned Tech' <> Blank(), RGBA(255, 255, 180, .8),RGBA(250, 155, 112, .8))
             FocusedBorderColor: =backgroud_List.BorderColor
             Height: =110
             HoverFill: =backgroud_List.Fill
@@ -127,7 +127,7 @@
             PressedColor: =label_Line_Machine.Color
             PressedFill: =label_Line_Machine.Fill
             Size: =18
-            Text: =ThisItem.Line & " - " & ThisItem.ikel
+            Text: =ThisItem.Line & " - " & ThisItem.Machine
             Width: =508
             X: =250
             ZIndex: =3
@@ -149,7 +149,7 @@
             PressedFill: =label_Tech.Fill
             Size: =15
             Text: |-
-                =If(ThisItem.tveh <> Blank(), "Assigned Tech: " & ThisItem.tveh,"Waiting for Tech")
+                =If(ThisItem.'Assigned Tech' <> Blank(), "Assigned Tech: " & ThisItem.'Assigned Tech',"Waiting for Tech")
             Width: =379
             Y: =64
             ZIndex: =4
@@ -171,7 +171,7 @@
             PressedFill: =label_ReportTime.Fill
             Size: =15
             Text: |-
-                ="Report Time: " & Text(ThisItem.Report_x0020_Time,"[$-en-US]dd/mm/yy hh:mm")
+                ="Report Time: " & Text(ThisItem.'Report Time',"[$-en-US]dd/mm/yy hh:mm")
             Width: =379
             X: =379
             Y: =64
@@ -198,7 +198,7 @@
             PaddingTop: =1
             Size: =15
             Text: ="Operator Close Out"
-            Visible: =If (ThisItem.tveh <> Blank(),false,true)
+            Visible: =If (ThisItem.'Assigned Tech' <> Blank(),false,true)
             Width: =115
             X: =287
             Y: =18
@@ -256,7 +256,7 @@
         Icon: =Icon.Add
         OnSelect: |-
             =Set(LoadingVar,true);
-            IssueAddB.Run(dd_Area.Selected.Result,dd_Line.Selected.Result,dd_Machine.Selected.Machine,Now(),DepartmentVal,dd_Machine.Selected.'Machine Type');
+            IssueAddB.Run(dd_Area.Selected.Result,dd_Line.Selected.Result,dd_Machine.Selected.Machine,Now(),DepartmentVal,dd_Machine.Selected.MachineType);
             Set(timerAddStart,true);
         PressedBorderColor: =ColorFade(iconDT.BorderColor, -20%)
         PressedColor: =ColorFade(iconDT.Color, -20%)

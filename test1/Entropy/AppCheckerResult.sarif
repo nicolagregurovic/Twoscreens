@@ -23,10 +23,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 133,
+                  "charLength": 139,
                   "charOffset": 3,
                   "snippet": {
-                    "text": "CountRows(Filter('Downtime Tracker',dd_Line_1.Selected.Result = Line, dd_Machine_1.Selected.Machine = ikel, Downtimereason = \"Open\"))"
+                    "text": "CountRows(Filter('Downtime Tracker',dd_Line_1.Selected.Result = Line, dd_Machine_1.Selected.Machine = Machine, 'Downtime reason' = \"Open\"))"
                   }
                 }
               },
@@ -63,10 +63,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 260,
+                  "charLength": 266,
                   "charOffset": 9,
                   "snippet": {
-                    "text": "CountRows(\r\n        Filter(\r\n            'Downtime Tracker',\r\n            Downtimereason = \"Open\",\r\n            Area = dd_Area_1.Selected.Result,\r\n            Line = dd_Line_1.Selected.Result,\r\n            ikel = dd_Machine_1.Selected.Machine\r\n        )\r\n    )"
+                    "text": "CountRows(\r\n        Filter(\r\n            'Downtime Tracker',\r\n            'Downtime reason' = \"Open\",\r\n            Area = dd_Area_1.Selected.Result,\r\n            Line = dd_Line_1.Selected.Result,\r\n            Machine = dd_Machine_1.Selected.Machine\r\n        )\r\n    )"
                   }
                 }
               },
@@ -454,10 +454,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 153,
+                  "charLength": 150,
                   "charOffset": 23,
                   "snippet": {
-                    "text": "IssueAddB.Run(dd_Area_2.Selected.Result,dd_Line_2.Selected.Result,dd_Machine_2.Selected.Machine,Now(),DepartmentVal,dd_Machine_2.Selected.'Machine Type')"
+                    "text": "IssueAddB.Run(dd_Area_2.Selected.Result,dd_Line_2.Selected.Result,dd_Machine_2.Selected.Machine,Now(),DepartmentVal,dd_Machine_2.Selected.MachineType)"
                   }
                 }
               },
@@ -531,10 +531,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 161,
+                  "charLength": 158,
                   "charOffset": 23,
                   "snippet": {
-                    "text": "Technotification2.Run(DepartmentVal,dd_Area_2.Selected.Result,dd_Line_2.Selected.Result,dd_Machine_2.Selected.Machine,Now(),dd_Machine_2.Selected.'Machine Type')"
+                    "text": "Technotification2.Run(DepartmentVal,dd_Area_2.Selected.Result,dd_Line_2.Selected.Result,dd_Machine_2.Selected.Machine,Now(),dd_Machine_2.Selected.MachineType)"
                   }
                 }
               },
@@ -649,10 +649,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 8,
+                  "charLength": 9,
                   "charOffset": 79,
                   "snippet": {
-                    "text": "Downtime"
+                    "text": "DowntimeT"
                   }
                 }
               },
@@ -665,7 +665,7 @@
           ],
           "message": {
             "arguments": [
-              "Downtime"
+              "DowntimeT"
             ],
             "id": "issue"
           },
@@ -690,7 +690,7 @@
                 },
                 "region": {
                   "charLength": 1,
-                  "charOffset": 88,
+                  "charOffset": 89,
                   "snippet": {
                     "text": "="
                   }
@@ -729,10 +729,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 129,
+                  "charLength": 130,
                   "charOffset": 0,
                   "snippet": {
-                    "text": "SortByColumns(\r\n   Filter(\r\n   'Downtime Tracker', Department = DepartmentVal, Downtime = \"\"),\r\n    \"Created\",\r\n    Descending\r\n)"
+                    "text": "SortByColumns(\r\n   Filter(\r\n   'Downtime Tracker', Department = DepartmentVal, DowntimeT = \"\"),\r\n    \"Created\",\r\n    Descending\r\n)"
                   }
                 }
               },
@@ -803,10 +803,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
+                  "charLength": 16,
                   "charOffset": 11,
                   "snippet": {
-                    "text": ".tveh"
+                    "text": ".'Assigned Tech'"
                   }
                 }
               },
@@ -841,7 +841,7 @@
                 },
                 "region": {
                   "charLength": 2,
-                  "charOffset": 17,
+                  "charOffset": 28,
                   "snippet": {
                     "text": "<>"
                   }
@@ -1066,10 +1066,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
+                  "charLength": 8,
                   "charOffset": 32,
                   "snippet": {
-                    "text": ".ikel"
+                    "text": ".Machine"
                   }
                 }
               },
@@ -1140,10 +1140,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
+                  "charLength": 16,
                   "charOffset": 12,
                   "snippet": {
-                    "text": ".tveh"
+                    "text": ".'Assigned Tech'"
                   }
                 }
               },
@@ -1178,7 +1178,7 @@
                 },
                 "region": {
                   "charLength": 2,
-                  "charOffset": 18,
+                  "charOffset": 29,
                   "snippet": {
                     "text": "<>"
                   }
@@ -1366,10 +1366,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
+                  "charLength": 16,
                   "charOffset": 11,
                   "snippet": {
-                    "text": ".tveh"
+                    "text": ".'Assigned Tech'"
                   }
                 }
               },
@@ -1404,7 +1404,7 @@
                 },
                 "region": {
                   "charLength": 2,
-                  "charOffset": 17,
+                  "charOffset": 28,
                   "snippet": {
                     "text": "<>"
                   }
@@ -1445,7 +1445,7 @@
                 },
                 "region": {
                   "charLength": 8,
-                  "charOffset": 49,
+                  "charOffset": 60,
                   "snippet": {
                     "text": "ThisItem"
                   }
@@ -1481,10 +1481,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
-                  "charOffset": 57,
+                  "charLength": 16,
+                  "charOffset": 68,
                   "snippet": {
-                    "text": ".tveh"
+                    "text": ".'Assigned Tech'"
                   }
                 }
               },
@@ -1555,10 +1555,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 18,
+                  "charLength": 14,
                   "charOffset": 31,
                   "snippet": {
-                    "text": ".Report_x0020_Time"
+                    "text": ".'Report Time'"
                   }
                 }
               },
@@ -1592,10 +1592,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 58,
+                  "charLength": 54,
                   "charOffset": 18,
                   "snippet": {
-                    "text": "Text(ThisItem.Report_x0020_Time,\"[$-en-US]dd/mm/yy hh:mm\")"
+                    "text": "Text(ThisItem.'Report Time',\"[$-en-US]dd/mm/yy hh:mm\")"
                   }
                 }
               },
@@ -1787,10 +1787,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 145,
+                  "charLength": 142,
                   "charOffset": 23,
                   "snippet": {
-                    "text": "IssueAddB.Run(dd_Area.Selected.Result,dd_Line.Selected.Result,dd_Machine.Selected.Machine,Now(),DepartmentVal,dd_Machine.Selected.'Machine Type')"
+                    "text": "IssueAddB.Run(dd_Area.Selected.Result,dd_Line.Selected.Result,dd_Machine.Selected.Machine,Now(),DepartmentVal,dd_Machine.Selected.MachineType)"
                   }
                 }
               },
@@ -2139,10 +2139,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 8,
+                  "charLength": 9,
                   "charOffset": 79,
                   "snippet": {
-                    "text": "Downtime"
+                    "text": "DowntimeT"
                   }
                 }
               },
@@ -2155,7 +2155,7 @@
           ],
           "message": {
             "arguments": [
-              "Downtime"
+              "DowntimeT"
             ],
             "id": "issue"
           },
@@ -2180,7 +2180,7 @@
                 },
                 "region": {
                   "charLength": 1,
-                  "charOffset": 88,
+                  "charOffset": 89,
                   "snippet": {
                     "text": "="
                   }
@@ -2219,10 +2219,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 129,
+                  "charLength": 130,
                   "charOffset": 0,
                   "snippet": {
-                    "text": "SortByColumns(\r\n   Filter(\r\n   'Downtime Tracker', Department = DepartmentVal, Downtime = \"\"),\r\n    \"Created\",\r\n    Descending\r\n)"
+                    "text": "SortByColumns(\r\n   Filter(\r\n   'Downtime Tracker', Department = DepartmentVal, DowntimeT = \"\"),\r\n    \"Created\",\r\n    Descending\r\n)"
                   }
                 }
               },
@@ -2293,10 +2293,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
+                  "charLength": 16,
                   "charOffset": 11,
                   "snippet": {
-                    "text": ".tveh"
+                    "text": ".'Assigned Tech'"
                   }
                 }
               },
@@ -2331,7 +2331,7 @@
                 },
                 "region": {
                   "charLength": 2,
-                  "charOffset": 17,
+                  "charOffset": 28,
                   "snippet": {
                     "text": "<>"
                   }
@@ -2556,10 +2556,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
+                  "charLength": 8,
                   "charOffset": 32,
                   "snippet": {
-                    "text": ".ikel"
+                    "text": ".Machine"
                   }
                 }
               },
@@ -2630,10 +2630,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
+                  "charLength": 16,
                   "charOffset": 12,
                   "snippet": {
-                    "text": ".tveh"
+                    "text": ".'Assigned Tech'"
                   }
                 }
               },
@@ -2668,7 +2668,7 @@
                 },
                 "region": {
                   "charLength": 2,
-                  "charOffset": 18,
+                  "charOffset": 29,
                   "snippet": {
                     "text": "<>"
                   }
@@ -2856,10 +2856,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
+                  "charLength": 16,
                   "charOffset": 11,
                   "snippet": {
-                    "text": ".tveh"
+                    "text": ".'Assigned Tech'"
                   }
                 }
               },
@@ -2894,7 +2894,7 @@
                 },
                 "region": {
                   "charLength": 2,
-                  "charOffset": 17,
+                  "charOffset": 28,
                   "snippet": {
                     "text": "<>"
                   }
@@ -2935,7 +2935,7 @@
                 },
                 "region": {
                   "charLength": 8,
-                  "charOffset": 49,
+                  "charOffset": 60,
                   "snippet": {
                     "text": "ThisItem"
                   }
@@ -2971,10 +2971,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 5,
-                  "charOffset": 57,
+                  "charLength": 16,
+                  "charOffset": 68,
                   "snippet": {
-                    "text": ".tveh"
+                    "text": ".'Assigned Tech'"
                   }
                 }
               },
@@ -3045,10 +3045,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 18,
+                  "charLength": 14,
                   "charOffset": 31,
                   "snippet": {
-                    "text": ".Report_x0020_Time"
+                    "text": ".'Report Time'"
                   }
                 }
               },
@@ -3082,10 +3082,10 @@
                   "relativeAddress": 0
                 },
                 "region": {
-                  "charLength": 58,
+                  "charLength": 54,
                   "charOffset": 18,
                   "snippet": {
-                    "text": "Text(ThisItem.Report_x0020_Time,\"[$-en-US]dd/mm/yy hh:mm\")"
+                    "text": "Text(ThisItem.'Report Time',\"[$-en-US]dd/mm/yy hh:mm\")"
                   }
                 }
               },
@@ -3225,96 +3225,6 @@
           },
           "ruleId": "app-ErrInvalidArgs-Func",
           "ruleIndex": 5
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Department Selection.btstartApp.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Department Selection.btstartApp.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Department Selection",
-                "type": "Department Selection.btstartApp"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 10
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Department Selection.btstartApp.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Department Selection.btstartApp.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "Department Selection",
-                "type": "Department Selection.btstartApp"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 11
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Department Selection.dd_Department.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Department Selection.dd_Department.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Department Selection",
-                "type": "Department Selection.dd_Department"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 10
         },
         {
           "locations": [
@@ -4310,19 +4220,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "App.opRea"
+                  "fullyQualifiedName": "Department Selection.btstartApp.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "App.opRea",
+                  "fullyQualifiedName": "Department Selection.btstartApp.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
-                "member": "opRea",
-                "module": "App",
-                "type": "App"
+                "member": "AccessibleLabel",
+                "module": "Department Selection",
+                "type": "Department Selection.btstartApp"
               }
             }
           ],
@@ -4332,8 +4242,68 @@
           "properties": {
             "level": "Medium"
           },
-          "ruleId": "app-UnusedVariables",
-          "ruleIndex": 14
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 10
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Department Selection.btstartApp.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Department Selection.btstartApp.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Department Selection",
+                "type": "Department Selection.btstartApp"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 11
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Department Selection.dd_Department.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Department Selection.dd_Department.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Department Selection",
+                "type": "Department Selection.dd_Department"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 10
         },
         {
           "locations": [
@@ -4411,6 +4381,36 @@
               },
               "properties": {
                 "member": "lotnumber",
+                "module": "App",
+                "type": "App"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-UnusedVariables",
+          "ruleIndex": 14
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "App.opRea"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "App.opRea",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "opRea",
                 "module": "App",
                 "type": "App"
               }
